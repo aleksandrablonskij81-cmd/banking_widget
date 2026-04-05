@@ -1,5 +1,6 @@
 from typing import List, Dict, Any
 
+
 def filter_by_state(transactions: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """Фильтрует список транзакций по указанному статусу."""
     return [item for item in transactions if item.get("state") == state]
