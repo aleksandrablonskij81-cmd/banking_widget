@@ -44,4 +44,11 @@ sorted_data = sort_by_date(data)
 - Poetry
 - Git
 - Flake8, black, isort, mypy
-- 
+
+
+## Тестирование
+
+Для запуска тестов и проверки покрытия выполните:
+
+```bash
+poetry run pytest --cov=src --cov-report=html```
