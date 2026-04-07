@@ -14,36 +14,28 @@ def sample_transactions():
             "id": 939719570,
             "state": "EXECUTED",
             "date": "2018-06-30T02:08:58.425572",
-            "operationAmount": {
-                "amount": "9824.07",
-                "currency": {"name": "USD", "code": "USD"}
-            },
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод организации",
         },
         {
             "id": 142264268,
             "state": "EXECUTED",
             "date": "2019-04-04T23:20:05.206878",
-            "operationAmount": {
-                "amount": "79114.93",
-                "currency": {"name": "USD", "code": "USD"}
-            },
+            "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
             "description": "Перевод со счета на счет",
         },
         {
             "id": 873106923,
             "state": "EXECUTED",
             "date": "2019-03-23T01:09:46.296404",
-            "operationAmount": {
-                "amount": "43318.34",
-                "currency": {"name": "руб.", "code": "RUB"}
-            },
+            "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
             "description": "Перевод со счета на счет",
         },
     ]
 
 
 # ==================== filter_by_currency ====================
+
 
 def test_filter_by_currency_usd(sample_transactions):
     """Проверяет фильтрацию по USD."""
@@ -74,6 +66,7 @@ def test_filter_by_currency_empty_list():
 
 # ==================== transaction_descriptions ====================
 
+
 def test_transaction_descriptions(sample_transactions):
     """Проверяет корректность генерации описаний."""
     descriptions = list(transaction_descriptions(sample_transactions))
@@ -95,10 +88,14 @@ def test_transaction_descriptions_missing_description():
 
 # ==================== card_number_generator ====================
 
-@pytest.mark.parametrize("start, stop, expected_first, expected_last", [
-    (1, 5, "0000 0000 0000 0001", "0000 0000 0000 0005"),
-    (9999, 10001, "0000 0000 0000 9999", "0000 0000 0001 0001"),
-])
+
+@pytest.mark.parametrize(
+    "start, stop, expected_first, expected_last",
+    [
+        (1, 5, "0000 0000 0000 0001", "0000 0000 0000 0005"),
+        (9999, 10001, "0000 0000 0000 9999", "0000 0000 0001 0001"),
+    ],
+)
 def test_card_number_generator_range(start, stop, expected_first, expected_last):
     """Параметризованный тест диапазонов генерации номеров карт."""
     result = list(card_number_generator(start, stop))
