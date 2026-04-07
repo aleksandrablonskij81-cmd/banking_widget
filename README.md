@@ -77,3 +77,20 @@ from src.generators import card_number_generator
 
 for card_number in card_number_generator(1, 5):
     print(card_number)
+## Декоратор логирования (модуль `decorators`)
+
+Декоратор `log` автоматически логирует вызовы функций:
+
+- В консоль: `@log()`
+- В файл: `@log(filename="mylog.txt")`
+
+Пример:
+
+```python
+from src.decorators import log
+
+@log(filename="log.txt")
+def my_function(x, y):
+    return x + y
+
+my_function(1, 2)
