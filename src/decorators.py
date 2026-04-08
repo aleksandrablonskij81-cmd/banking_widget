@@ -16,6 +16,7 @@ def log(filename: Optional[str] = None) -> Callable:
     Returns:
         Декоратор, оборачивающий функцию.
     """
+
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -36,5 +37,7 @@ def log(filename: Optional[str] = None) -> Callable:
                 else:
                     print(error_message)
                 raise
+
         return wrapper
+
     return decorator

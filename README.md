@@ -94,3 +94,48 @@ def my_function(x, y):
     return x + y
 
 my_function(1, 2)
+
+
+## Работа с JSON и внешним API
+
+### Модуль `src/utils.py`
+
+Функция `read_json_file(file_path: str) -> List[Dict[str, Any]]` читает JSON-файл с транзакциями и возвращает список словарей. Если файл не найден, пустой или содержит не список — возвращает пустой список.
+
+Пример использования:
+
+```python
+from src.utils import read_json_file
+
+transactions = read_json_file("data/operations.json")
+print(len(transactions))
+Модуль src/external_api.py
+
+Функция convert_currency(transaction: Dict[str, Any]) -> float конвертирует сумму транзакции в рубли, если валюта USD или EUR. Для конвертации используется внешнее API (Exchange Rates Data API).
+
+Пример использования:
+
+python
+from src.external_api import convert_currency
+
+transaction = {
+    "operationAmount": {
+        "amount": "100",
+        "currency": {"code": "USD"}
+    }
+}
+rub_amount = convert_currency(transaction)
+print(rub_amount)
+Переменные окружения
+
+Для работы с API необходимо получить ключ на apilayer.com и сохранить его в файл .env:
+
+text
+API_KEY=ваш_ключ
+Шаблон файла .env с указанием необходимых переменных находится в .env.example.
+
+Тестирование
+
+bash
+poetry run pytest --cov=src --cov-report=html
+Отчёт о покрытии сохраняется в папке htmlcov/.
