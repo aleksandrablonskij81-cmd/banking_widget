@@ -2,7 +2,7 @@
 Модуль с генераторами для работы с транзакциями.
 """
 
-from typing import List, Dict, Any, Iterator
+from typing import Any, Dict, Iterator, List
 
 
 def filter_by_currency(transactions: List[Dict[str, Any]], currency_code: str) -> Iterator[Dict[str, Any]]:
@@ -48,5 +48,5 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
     """
     for number in range(start, stop + 1):
         card_str = f"{number:016d}"
-        formatted = " ".join(card_str[i:i + 4] for i in range(0, 16, 4))
+        formatted = " ".join(card_str[i : i + 4] for i in range(0, 16, 4))
         yield formatted
