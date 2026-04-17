@@ -1,0 +1,36 @@
+2026-04-17 14:29:45,568 - utils - DEBUG - Попытка чтения файла: /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_success0/test.json
+2026-04-17 14:29:45,568 - utils - INFO - Файл /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_success0/test.json успешно прочитан. Найдено 1 транзакций.
+2026-04-17 14:29:45,568 - utils - DEBUG - Попытка чтения файла: not_found.json
+2026-04-17 14:29:45,568 - utils - ERROR - Файл не найден: not_found.json. Ошибка: [Errno 2] No such file or directory: 'not_found.json'
+Traceback (most recent call last):
+  File "/Users/aleksandr/Desktop/PythonPycharmProjects_banking_widget/src/utils.py", line 40, in read_json_file
+    with open(file_path, "r", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'not_found.json'
+2026-04-17 14:29:45,569 - utils - DEBUG - Попытка чтения файла: /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_invalid_js0/invalid.json
+2026-04-17 14:29:45,569 - utils - ERROR - Ошибка декодирования JSON в файле /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_invalid_js0/invalid.json. Ошибка: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/aleksandr/Desktop/PythonPycharmProjects_banking_widget/src/utils.py", line 41, in read_json_file
+    data = json.load(f)
+           ^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.11/3.11.15/Frameworks/Python.framework/Versions/3.11/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-04-17 14:29:45,570 - utils - DEBUG - Попытка чтения файла: /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_not_list0/not_list.json
+2026-04-17 14:29:45,570 - utils - WARNING - Файл /private/var/folders/b0/gvth5q0s79v5cp9n6jvl2k2m0000gn/T/pytest-of-aleksandr/pytest-3/test_read_json_file_not_list0/not_list.json не содержит список транзакций. Получен тип: <class 'dict'>
+2026-04-17 14:29:45,570 - utils - DEBUG - Поиск по строке 'продукт': найдено 2 транзакций
+2026-04-17 14:29:45,570 - utils - DEBUG - Поиск по строке 'билеты': найдено 0 транзакций
+2026-04-17 14:29:45,570 - utils - DEBUG - Поиск по строке 'Перевод': найдено 2 транзакций
+2026-04-17 14:29:45,570 - utils - DEBUG - Поисковая строка пуста, возвращаем все транзакции
+2026-04-17 14:29:45,570 - utils - DEBUG - Список транзакций пуст
+2026-04-17 14:29:45,571 - utils - DEBUG - Поиск по строке 'продукт': найдено 2 транзакций
+2026-04-17 14:29:45,571 - utils - DEBUG - Поиск по строке '(срочный)': найдено 1 транзакций

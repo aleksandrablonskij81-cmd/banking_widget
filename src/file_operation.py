@@ -5,7 +5,7 @@ import pandas as pd
 
 def read_transactions_from_csv(file_path: str) -> List[Dict[str, Any]]:
     try:
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, delimiter=";")
         result = df.to_dict(orient='records')
         return result  # type: ignore
     except FileNotFoundError:

@@ -149,3 +149,13 @@ poetry run pytest --cov=src --cov-report=html
 - `read_transactions_from_excel(file_path)` — читает Excel
 
 Функции возвращают список словарей с транзакциями.
+
+```markdown
+## Домашка 10.8
+
+- Добавлен поиск по описанию с `re`
+- Добавлен подсчёт категорий с `Counter`
+- Добавлен пользовательский интерфейс (`src/main.py`)
+
+Запуск: `python -m src.main`
+Тесты: `pytest tests/`
