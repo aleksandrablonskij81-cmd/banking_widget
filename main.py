@@ -11,6 +11,6 @@ def main():
     print(f"Номер счета: {account_number}")
     print(f"Замаскированный счет: {get_mask_account(account_number)}")
 
-
 if __name__ == "__main__":
     main()
+

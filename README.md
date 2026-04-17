@@ -139,3 +139,13 @@ API_KEY=ваш_ключ
 bash
 poetry run pytest --cov=src --cov-report=html
 Отчёт о покрытии сохраняется в папке htmlcov/.
+
+```markdown
+## Новая функциональность
+
+Добавлена поддержка чтения финансовых операций из CSV и Excel (XLSX) файлов через библиотеку `pandas`.
+
+- `read_transactions_from_csv(file_path)` — читает CSV
+- `read_transactions_from_excel(file_path)` — читает Excel
+
+Функции возвращают список словарей с транзакциями.
