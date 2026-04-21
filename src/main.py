@@ -4,6 +4,7 @@
 """
 
 import json
+
 from src.file_operation import read_transactions_from_csv, read_transactions_from_excel
 from src.processing import filter_by_state, sort_by_date
 from src.utils import search_transactions_by_description
@@ -26,7 +27,7 @@ def load_transactions() -> list:
     if choice == "1":
         file_path = input("Введите путь к JSON-файлу: ").strip()
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 if isinstance(data, list):
                     print(f"Загружено {len(data)} транзакций из JSON")
@@ -82,17 +83,17 @@ def filter_by_status_menu(transactions: list) -> list:
         print("\nДоступные статусы: EXECUTED, CANCELED, PENDING")
         status = input("Введите статус для фильтрации (или 'пропустить'): ").strip().upper()
 
-        if status == 'ПРОПУСТИТЬ' or status == 'SKIP':
+        if status == "ПРОПУСТИТЬ" or status == "SKIP":
             print("Фильтрация по статусу пропущена")
             return transactions
 
         if status in valid_statuses:
             filtered = filter_by_state(transactions, status)
-            print(f"Операции отфильтрованы по статусу \"{status}\"")
+            print(f'Операции отфильтрованы по статусу "{status}"')
             print(f"Найдено {len(filtered)} транзакций из {len(transactions)}")
             return filtered
         else:
-            print(f"Статус операции \"{status}\" недоступен. Попробуйте снова.")
+            print(f'Статус операции "{status}" недоступен. Попробуйте снова.')
 
 
 def sort_by_date_menu(transactions: list) -> list:
@@ -107,9 +108,9 @@ def sort_by_date_menu(transactions: list) -> list:
     """
     choice = input("\nОтсортировать операции по дате? (да/нет): ").strip().lower()
 
-    if choice in ['да', 'yes', 'y', 'д']:
+    if choice in ["да", "yes", "y", "д"]:
         order = input("По возрастанию или по убыванию? (возрастание/убывание): ").strip().lower()
-        descending = order in ['убывание', 'desc', 'убыв', 'убыванию']
+        descending = order in ["убывание", "desc", "убыв", "убыванию"]
         transactions = sort_by_date(transactions, descending)
         print(f"Транзакции отсортированы по {'убыванию' if descending else 'возрастанию'} даты")
 
@@ -128,7 +129,7 @@ def search_by_description_menu(transactions: list) -> list:
     """
     choice = input("\nОтфильтровать список транзакций по определенному слову в описании? (да/нет): ").strip().lower()
 
-    if choice in ['да', 'yes', 'y', 'д']:
+    if choice in ["да", "yes", "y", "д"]:
         search_word = input("Введите слово для поиска: ").strip()
         if search_word:
             filtered = search_transactions_by_description(transactions, search_word)
@@ -156,10 +157,10 @@ def print_transactions(transactions: list):
         return
 
     for i, tx in enumerate(transactions[:20], 1):
-        date = tx.get('date', 'Нет даты')[:10] if tx.get('date') else 'Нет даты'
-        description = tx.get('description', 'Нет описания')
-        amount = tx.get('amount', 0)
-        currency = tx.get('currency_name', 'руб.')
+        date = tx.get("date", "Нет даты")[:10] if tx.get("date") else "Нет даты"
+        description = tx.get("description", "Нет описания")
+        amount = tx.get("amount", 0)
+        currency = tx.get("currency_name", "руб.")
 
         print(f"{i}. {date} - {description}")
         print(f"   Сумма: {amount} {currency}")

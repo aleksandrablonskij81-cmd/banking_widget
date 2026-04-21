@@ -1,5 +1,11 @@
-import logging
+"""
+Модуль с утилитами для работы с транзакциями.
+Содержит функции чтения JSON-файлов и поиска по описанию.
+"""
+
 import json
+import logging
+import re
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -22,11 +28,11 @@ def read_json_file(file_path: str) -> List[Dict[str, Any]]:
     """
     Читает JSON-файл и возвращает список транзакций.
 
-    Args:
-        file_path: Путь к JSON-файлу.
+    Аргументы:
+        file_path (str): Путь к JSON-файлу.
 
-    Returns:
-        Список словарей с данными о транзакциях или пустой список при ошибке.
+    Возвращает:
+        List[Dict[str, Any]]: Список словарей с данными о транзакциях или пустой список при ошибке.
     """
     logger_utils.debug(f"Попытка чтения файла: {file_path}")
 
@@ -48,3 +54,34 @@ def read_json_file(file_path: str) -> List[Dict[str, Any]]:
     except TypeError as e:
         logger_utils.error(f"Ошибка типа при чтении файла {file_path}. Ошибка: {e}", exc_info=True)
         return []
+
+
+def search_transactions_by_description(transactions: List[Dict[str, Any]], search_string: str) -> List[Dict[str, Any]]:
+    """
+    Ищет транзакции, в описании которых содержится заданная строка с использованием регулярных выражений.
+
+    Аргументы:
+        transactions (List[Dict[str, Any]]): Список словарей с транзакциями.
+        search_string (str): Строка для поиска.
+
+    Возвращает:
+        List[Dict[str, Any]]: Список транзакций, подходящих под поиск.
+    """
+    if not search_string:
+        logger_utils.debug("Поисковая строка пуста, возвращаем все транзакции")
+        return transactions
+
+    if not transactions:
+        logger_utils.debug("Список транзакций пуст")
+        return []
+
+    pattern = re.compile(re.escape(search_string), re.IGNORECASE)
+    result = []
+
+    for transaction in transactions:
+        description = transaction.get('description', '')
+        if pattern.search(description):
+            result.append(transaction)
+
+    logger_utils.debug(f"Поиск по строке '{search_string}': найдено {len(result)} транзакций")
+    return result
